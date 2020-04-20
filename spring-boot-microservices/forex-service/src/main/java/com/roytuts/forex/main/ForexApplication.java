@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableDiscoveryClient
 @EntityScan("com.roytuts.forex.entity")
 @EnableJpaRepositories("com.roytuts.forex.repository")
-@SpringBootApplication//(scanBasePackages = "com.roytuts.forex")
+@SpringBootApplication(scanBasePackages = "com.roytuts.forex")
 public class ForexApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,33 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: orchestrator-service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+resilience4j:
+  retry:
+    instances:
+      paymentRetry:
+        max-attempts: 3
+        wait-duration: 1s
+        retry-exceptions:
+          - feign.FeignException
+         # - feign.FeignException$InternalServerError
+          #- feign.FeignException$ServiceUnavailable
+          #- feign.FeignException$BadGateway
+
+  circuitbreaker:
+    instances:
+      paymentCircuitBreaker:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
